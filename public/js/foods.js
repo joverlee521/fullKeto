@@ -1,56 +1,47 @@
-var brandedResults = {
-    getResults: function(result){
+var results = {
+    getResults: function(result, name, id, type){
+        var resultType = type;
         for(var i = 0; i < result.length; i++){
-            var brandedName = result[i].brand_name_item_name;
-            var brandedId = result[i].nix_item_id;
+            var foodName = result[i][name];
+            var foodId = result[i][id];
             var nutrients = result[i].full_nutrients;
             var totalCarb;
             var fiber;
-            var netCarbs;
+            var netCarb;
             for(var j = 0; j < nutrients.length; j++){
                 if(nutrients[j].attr_id == 205){
-                    totalCarb = nutrients[j].value;
+                    totalCarb = nutrients[j].value.toFixed(2);
                 }
                 if(nutrients[j].attr_id == 291){
-                    fiber = nutrients[j].value;
+                    fiber = nutrients[j].value.toFixed(2);
                 }
             }
             if(fiber !== undefined){
-                netCarbs = totalCarb - fiber;
+                netCarb = (totalCarb - fiber).toFixed(2);
             }
             else{
-                netCarbs = totalCarb;
+                netCarb = totalCarb;
             }
-            this.displayResults(brandedName, brandedId);
+            this.displayResults(foodName, foodId, totalCarb, fiber, netCarb, resultType);
         }
     },
-    displayResults: function(name, id){
+    displayResults: function(name, id, totalCarb, fiber, netCarb, type){
         var newPopout = $("<li>");
         var newHeader = $("<div class='collapsible-header'>");
         var newBody = $("<div class='collapsible-body'>");
-        // var newIcon = $("<i class='material-icons'>").text("restaurant");
-        newHeader.html("<i class='material-icons'>restaurant</i> " + name).attr({"data-id": id, "data-type": "branded"});
+        var newTotalCarb = $("<span>").html("Total Carbohydrates: " + totalCarb + "g");
+        var newFiber = $("<span>").html("Dietary Fiber: " + fiber + "g");
+        var newNetCarb = $("<span>").html("Net Carbohydrates: " + netCarb + "g");
+        newBody.append(newTotalCarb, "<br>", newFiber, "<br>", newNetCarb);
+        newHeader.attr({"data-id": id, "data-type": type});
         newPopout.append(newHeader, newBody);
-        $("#branded-results").append(newPopout);
-    }
-}
-
-var commonResults = {
-    getResults: function(result){
-        for(var i = 0; i < result.length; i++){
-            var commonName = result[i].food_name;
-            var commonId = result[i].tag_id;
-            this.displayResults(commonName, commonId);
+        if(type === "branded"){
+            newHeader.html("<i class='material-icons'>restaurant</i> " + name);
+            $("#branded-results").append(newPopout);
+        }else{
+            newHeader.html("<i class='material-icons'>local_grocery_store</i> " + name)
+            $("#common-results").append(newPopout);
         }
-    },
-    displayResults: function(name, id){
-        var newPopout = $("<li>");
-        var newHeader = $("<div class='collapsible-header'>");
-        var newBody = $("<div class='collapsible-body'>");
-        // var newIcon = $("<i class='material-icons'>").text("restaurant");
-        newHeader.html("<i class='material-icons'>shopping_cart</i> " + name).attr({"data-id": id, "data-type": "common"});
-        newPopout.append(newHeader, newBody);
-        $("#common-results").append(newPopout);
     }
 }
 
@@ -65,7 +56,7 @@ $("#food-search-form").on("submit", function(event){
     }).then(function(result){
         console.log(result);
         $("#food-search-loader").addClass("hide");
-        brandedResults.getResults(result.branded);
-        commonResults.getResults(result.common);
+        results.getResults(result.branded, "brand_name_item_name", "nix_item_id", "branded");
+        results.getResults(result.common, "food_name", "tag_id", "common");
     })
 })
