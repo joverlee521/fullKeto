@@ -1,0 +1,81 @@
+body {
+    background-color:#FCFFC2;
+    color:#7E0000;
+}
+
+footer{
+    background:
+    /* top, transparent black, faked with gradient */ 
+    linear-gradient(
+      rgba(0, 0, 0, 0.3), 
+      rgba(0, 0, 0, 0.3)
+    ),
+    url(../img/footer_background.jpeg); 
+    background-size: cover;
+    background-position: right top;
+}
+
+.banner {
+    background:
+    /* top, transparent black, faked with gradient */ 
+    linear-gradient(
+      rgba(0, 0, 0, 0.3), 
+      rgba(0, 0, 0, 0.3)
+    ),
+    /* bottom, image */
+    url(../img/banner_background.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    height: 40vh;
+    color: white;
+    margin-bottom: 0;
+}
+
+.tab-wrapper {
+    padding: 0 !important;
+}
+
+.hide {
+    display: none;
+}
+
+.divider {
+    background-color: #482311;
+}
+
+.result {
+    padding: 2px;
+}
+
+.card {
+    height: 500px;
+}
+
+.card-image img {
+    max-height: 100%;
+}
+
+.card-content {
+    height: 8rem;
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+.search-form {
+    padding-top: 2rem;
+}
+
+.search-results-wrapper{
+    padding-bottom: 2rem;
+}
+
+.collapsible-header {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    text-align: left;
+}
