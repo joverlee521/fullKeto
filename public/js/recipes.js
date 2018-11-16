@@ -14,24 +14,6 @@ var recipeData;
 var numberOfPages;
 var currentPage;
 
-var randomRecipes = {
-    randomResults: function(){
-        $("#recipe-search-loader").removeClass("hide");
-        $.ajax({
-            url: "/api/edamam/random",
-            method: "GET"
-        }).then(function(result){
-            console.log("api call complete");
-            console.log(typeof result);
-            console.log(result);
-            recipeData = result;
-            $("#recipe-search-loader").addClass("hide");
-            recipeResults.getResults(result, 0, 9);
-            pagination.paginationDisplay(result.hits.length);
-        });
-    }
-}
-
 var recipeResults = {
     displayResults: function(imgSRC, title, url, source, servings, caloriesPerServing, fatPerServing, proteinPerServing, carbsPerServing, netCarbsPerServing){
         var newResult = $("<div class='col s12 m6 l4 result'>");
@@ -152,7 +134,19 @@ $("#pagination-end").on("click", function(){
 
 $("#random-button").on("click", function(){
     $("#search-results").empty();
-    randomRecipes.randomResults();
+    $("#recipe-search-loader").removeClass("hide");
+    $.ajax({
+        url: "/api/edamam/random",
+        method: "GET"
+    }).then(function(result){
+        console.log("api call complete");
+        console.log(typeof result);
+        console.log(result);
+        recipeData = result;
+        $("#recipe-search-loader").addClass("hide");
+        recipeResults.getResults(result, 0, 9);
+        pagination.paginationDisplay(result.hits.length);
+    });
 })
 
 $("#recipe-search-form").on("submit", function(event){
