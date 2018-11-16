@@ -1,14 +1,9 @@
-var headers = {
-    "x-app-id": "1517d728",
-    "x-app-key": "a7fd2ae1af395286ccc62c0ff89f662d"
-};
-
 var brandedResults = {
     getResults: function(result){
         for(var i = 0; i < result.length; i++){
             var brandedName = result[i].brand_name_item_name;
             var brandedId = result[i].nix_item_id;
-            var nutrients = results[i].full_nutrients;
+            var nutrients = result[i].full_nutrients;
             var totalCarb;
             var fiber;
             var netCarbs;
@@ -64,10 +59,8 @@ $("#food-search-form").on("submit", function(event){
     $("#food-search-results").empty();
     $("#food-search-loader").removeClass("hide");
     var userInput = $("#food-input").val();
-    var queryURL = "https://trackapi.nutritionix.com/v2/search/instant?detailed=true&query=" + userInput;
     $.ajax({
-        headers: headers,
-        url: queryURL,
+        url: "/api/nutritionix/" + userInput,
         method: "GET"
     }).then(function(result){
         console.log(result);
@@ -76,31 +69,3 @@ $("#food-search-form").on("submit", function(event){
         commonResults.getResults(result.common);
     })
 })
-
-// $(document).on("click", ".collapsible-header", function(){
-//     var id = $(this).attr("data-id");
-//     var that = this;
-//     if($(this).attr("data-type") === "branded"){
-//         var queryURL = "https://trackapi.nutritionix.com/v2/search/item?nix_item_id=" + id;
-//         $.ajax({
-//             headers: headers,
-//             url: queryURL,
-//             method: "GET"
-//         }).then(function(result){
-//             console.log(result);
-//             var info = result.foods[0];
-//             var totalCarb = info.nf_total_carbohydrate;
-//             if(info.nf_dietary_fiber !== null){
-//                 var totalFiber = info.nf_dietary_fiber;
-//                 var netCarbs = parseFloat(totalCarb) - parseFloat(totalFiber);
-//                 $(that).parent("li").children(".collapsible-body").append(totalCarb, "<br>", totalFiber, "<br>", netCarbs);
-//             }
-//             else{
-//                 $(that).parent("li").children(".collapsible-body").append(totalCarb, "<br>", "<p> No Fiber </p>");
-//             }
-//         })
-//     }
-//     else{
-        
-//     }
-// })
