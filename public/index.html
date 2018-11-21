@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Edamam Badge -->
     <script src="https://developer.edamam.com/attribution/badge.js"></script>
+    <!-- Google Platform Library -->
+    <meta name="google-signin-client_id" content="242777279846-9r3dcmb57dbbjmub94c6q077adn7rkjv.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
     <!-- Banner -->
@@ -33,6 +36,9 @@
                 </li>
                 <li class="tab col s4">
                     <a href="#ingredient-search">Is it Keto?</a>
+                </li>
+                <li class="tab col s4">
+                    <a href="#favorites">Favorite Recipes</a>
                 </li>
             </ul>
         </div>
@@ -121,6 +127,27 @@
                 </div>
             </div>
         </div>
+        <!-- Favorite Recipes -->
+        <div id="favorites" class="col s12">
+            <div class="section">
+                <h4 class="center-align"><u>Favorite Recipes</u></h4>
+            </div>
+            <!-- Create User/Sign In Buttons -->
+            <div class="container" id="login-signup">
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <a class="btn" href="#" onclick="signOut();">Sign out</a>
+            </div>
+        </div>
+    </div>
+    <div id="sign-in-modal" class="modal">
+        <div class="modal-content">
+            <h4>Sign In Successful!</h4>
+            <p>Please enter create a username for FullKeto:</p>
+            <form id="create-username-form">
+                <input id="username-input" type="text">
+                <input type="submit" value="SUBMIT">
+            </form>
+        </div>
     </div>
    
     <!-- Footer -->
@@ -133,6 +160,7 @@
                 </div>
                 <div class="col l4 offset-l2 s12 right-align">
                   <div id="edamam-badge" data-color="white"></div> 
+                  <img src="img/NutritionixAPI_hires_flat.png" width="200" id="nutritionix-badge">
                 </div>
               </div>
             </div>

@@ -27,7 +27,7 @@ footer{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
-    height: 40vh;
+    height: 30vh;
     color: white;
     margin-bottom: 0;
 }
@@ -78,4 +78,12 @@ footer{
     text-overflow: ellipsis;
     display: block;
     text-align: left;
+}
+
+#nutritionix-badge {
+    background-color: white;
+}
+
+#login-signup {
+    margin-top: 10vh;
 }

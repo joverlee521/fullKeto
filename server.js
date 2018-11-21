@@ -16,6 +16,9 @@ app.use(express.static("public"));
 require("dotenv").config();
 require("./routes/apiRoutes")(app);
 
+var router = require("./controllers/users_controller");
+app.use(router);
+
 // Requires our models for syncing.
 var db = require("./models");
 
