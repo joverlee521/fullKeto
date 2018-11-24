@@ -1,4 +1,7 @@
 var passport = require("passport");
+var path = require("path");
+
+var db = require("../models");
 
 module.exports = function(app){
     app.get("/cookies", function(req, res){
@@ -22,9 +25,23 @@ module.exports = function(app){
     app.get("/auth/google/callback", 
         passport.authenticate('google', {failureRedirect: '/login'}),
         function(req, res) {
-            console.log(res);
             req.session.token = req.user.token;
-            res.redirect("/");
+            var user = req.user.profile;
+            db.User.findOrCreate({
+                where: {
+                    token: user.id
+                },
+                defaults: {
+                    username: user.displayName
+                }
+            }).spread(function(user, created){
+                if(created){
+                    res.redirect("/addUser.html");
+                }
+                else{
+                    res.redirect("/")
+                }
+            });
     });
 
     app.get("/logout", function(req, res){
