@@ -6,7 +6,7 @@ var headerKey = process.env.NUTRI_KEY;
 
 module.exports = function(app){
     app.get("/api/edamam/random", function(req, res){
-        var randomNumber = Math.floor(Math.random()*100);
+        var randomNumber = Math.floor(Math.random()*50);
         var queryURL = "https://api.edamam.com/search?app_id=" + appId + "&app_key=" + appKey + "&diet=low-carb&q=keto&from=" + randomNumber + "&to=" + (randomNumber + 27);
         request(queryURL, function(error, response, body){
             if(error){
