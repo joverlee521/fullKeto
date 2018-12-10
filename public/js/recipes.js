@@ -133,15 +133,13 @@ $("#pagination-end").on("click", function(){
 })
 
 $("#random-button").on("click", function(){
-    $("#search-results").empty();
+    $("#recipe-search-results").empty();
     $("#recipe-search-loader").removeClass("hide");
     $.ajax({
         url: "/api/edamam/random",
         method: "GET"
     }).then(function(result){
-        console.log("api call complete");
-        console.log(typeof result);
-        console.log(result);
+        currentPage = 1;
         recipeData = result;
         $("#recipe-search-loader").addClass("hide");
         recipeResults.getResults(result, 0, 9);
