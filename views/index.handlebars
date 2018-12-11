@@ -1,3 +1,19 @@
+<div class="banner">
+    {{!-- Nav Bar --}}
+    <div class="row">
+        <div class="col s12">
+            <ul class="right">
+                <li><a href="/login" class="deep-orange darken-4 btn waves-effect waves-light">Log In</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Banner -->
+    <div class="row valign-wrapper">
+        <div class="col s12 center-align">
+            <h1>Full Keto</h1>
+        </div>
+    </div>
+</div>
 <!-- Main Content -->
 <div class="row" id="main-page">
     <!-- Tabs for search forms -->
@@ -22,12 +38,12 @@
                 <input id="search-input" type="text" class="validate" required>
             </div>
             <div class="col s3">
-                <button type="submit" class="waves-effect waves-light btn"id="search-button">Search</button>
+                <button type="submit" class="deep-orange darken-4 waves-effect waves-light btn"id="search-button">Search</button>
             </div> 
         </form>
         <div class="row">
             <div class="col s4 offset-s4 center-align">
-                <a class="waves-effect waves-light btn" id="random-button">Get Random Recipes</a>
+                <a class="deep-orange darken-4 waves-effect waves-light btn" id="random-button">Get Random Recipes</a>
             </div>
         </div>
         <br>
@@ -68,7 +84,7 @@
                     <input id="food-input" type="text" class="validate" required>
                 </div>
                 <div class="col s3">
-                    <button type="submit" class="waves-effect waves-light btn" id="food-search-button">Search</button>
+                    <button type="submit" class="deep-orange darken-4 waves-effect waves-light btn" id="food-search-button">Search</button>
                 </div>
             </form>
             <br>
@@ -98,3 +114,25 @@
             </div>
     </div>
 </div>
+{{!-- Spacer to make footer stick to bottom --}}
+<div class="spacer"></div>
+<!-- Footer -->
+<footer class="page-footer">
+    <div class="container">
+        <div class="row valign-wrapper">
+            <div class="col l6 s12">
+                <h5 class="white-text">Our Mission</h5>
+                <p class="grey-text text-lighten-4">Make keto easier!</p>
+            </div>
+            <div class="col l4 offset-l2 s12 right-align">
+                <div id="edamam-badge" data-color="white"></div> 
+                <img src="img/NutritionixAPI_hires_flat.png" width="200" id="nutritionix-badge">
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container center-align">
+        © 2018 Jover Lee
+        </div>
+    </div>
+</footer>

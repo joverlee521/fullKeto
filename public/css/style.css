@@ -1,6 +1,6 @@
 body {
     background-color:#FCFFC2;
-    color:#7E0000;
+    color:#bf360c;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -95,4 +95,5 @@ footer{
 
 #nutritionix-badge {
     background-color: white;
+    border-radius: 10px;
 }
