@@ -35,10 +35,14 @@ footer{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
-    height: 30vh;
+    height: 25vh;
     width: 100%;
     color: white;
     margin-bottom: 0;
+}
+
+.banner h1{
+    margin-top: 0;
 }
 
 #main-page {
@@ -96,4 +100,8 @@ footer{
 #nutritionix-badge {
     background-color: white;
     border-radius: 10px;
+}
+
+#loginPage {
+    height: 100vh;
 }
