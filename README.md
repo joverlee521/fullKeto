@@ -8,7 +8,7 @@ The goal of this project is to create a simple and straight-forward application 
 ![Full Keto](/public/img/homepage.png)
 
 ### Deployment
-The application is deployed to Heroku: https://jl-sequelizedburgers.herokuapp.com
+The application is deployed to Heroku: https://jl-fullketo.herokuapp.com
 
 * There may be a small delay when you first try to access the application due to the web dyno going to sleep if it receives no traffic for 30 minutes
 
