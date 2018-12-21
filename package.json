@@ -25,6 +25,7 @@
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
     "mysql2": "^1.6.4",
+    "nodemon": "^1.18.8",
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
     "path": "^0.12.7",

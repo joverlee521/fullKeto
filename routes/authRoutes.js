@@ -23,9 +23,8 @@ module.exports = function(app){
         passport.authenticate("google", { scope: ['https://www.googleapis.com/auth/plus.login'] }));
     
     app.get("/auth/google/callback", 
-        passport.authenticate('google', {failureRedirect: '/login'}),
+        passport.authenticate('google', {failureRedirect: '/'}),
         function(req, res) {
-            req.session.token = req.user.token;
             var user = req.user.profile;
             db.User.findOrCreate({
                 where: {
@@ -35,8 +34,9 @@ module.exports = function(app){
                     username: user.displayName
                 }
             }).spread(function(user, created){
+                req.session.token = user.id;
                 if(created){
-                    res.redirect("/addUser.html");
+                    res.render("newUser", {user});
                 }
                 else{
                     res.redirect("/")
@@ -48,5 +48,9 @@ module.exports = function(app){
         req.logout();
         req.session = null;
         res.redirect("/");
+    });
+
+    app.get("/newuser", function(req, res){
+        res.render("newUser");
     });
 }
